@@ -1,17 +1,20 @@
 package com.androidos.stopwatch;
 
+import com.androidos.helper.TimeFormater;
+
 public class Watch {
     private int minutes, seconds, miliSecondsPre10;
     private boolean isStop; 
-
+    private TimeFormater formater;
     public Watch() {
         minutes = 0;
         seconds = 0;
         miliSecondsPre10 = 0;
         isStop = false;
+        formater = new TimeFormater();
     }
 
-    public String increaseTimeBy10MiliSecond() {
+    public String increaseTimeBy10MiliSecondsAndReturn() {
         if (isStop) return getStopWatchFormated();
 
         miliSecondsPre10++;
@@ -36,25 +39,7 @@ public class Watch {
     }
 
     public String getStopWatchFormated() {
-        String miliSecondString = String.valueOf(miliSecondsPre10);
-        String secondString = String.valueOf(seconds);
-        String minuteString = String.valueOf(minutes);
-        
-        if (miliSecondString.length() == 1) miliSecondString = addZeroInFront(miliSecondString);
-
-        if (secondString.length() == 1) secondString = addZeroInFront(secondString);
-
-        if (minuteString.length() == 1) minuteString = addZeroInFront(minuteString);
-
-        return (
-            minuteString + ":" +
-            secondString + ":" +
-            miliSecondString
-        );
-    }
-
-    private String addZeroInFront(String time) {
-        return 0+time;
+        return formater.getTimeFormated(minutes, seconds, miliSecondsPre10);
     }
 
     public void reset() {

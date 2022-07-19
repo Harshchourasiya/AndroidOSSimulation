@@ -14,7 +14,7 @@ public class WatchTest {
     @Test
     public void testIncreaseTimeBy10MiliSecond() {
         for (int i = 0; i < 100 * 60 * 10 ; i++) {
-            watch.increaseTimeBy10MiliSecond();
+            watch.increaseTimeBy10MiliSecondsAndReturn();
         }
         assertEquals("10:00:00", watch.getStopWatchFormated()); 
 
