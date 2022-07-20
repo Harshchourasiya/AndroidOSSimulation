@@ -6,6 +6,7 @@ public class Timer {
     private int minutes, seconds, miliSecondsPer10;
     private boolean isStart;
     private TimeFormater formater;
+    
     public Timer() {
         isStart = false;
         formater = new TimeFormater();
