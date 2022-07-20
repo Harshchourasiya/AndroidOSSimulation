@@ -8,10 +8,10 @@ public class Time {
     private String TIMEPATTERN = "HH:mm:ss";
     
     public Time() {
-        time = LocalTime.now();
     }
 
     public String getFormatedTime() {
+        time = LocalTime.now();
         return time.format(DateTimeFormatter.ofPattern(TIMEPATTERN));
     }
 }
