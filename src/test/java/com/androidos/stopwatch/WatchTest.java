@@ -13,6 +13,7 @@ public class WatchTest {
 
     @Test
     public void testIncreaseTimeBy10MiliSecond() {
+        watch.stopAndStartSwitch();
         for (int i = 0; i < 100 * 60 * 10 ; i++) {
             watch.increaseTimeBy10MiliSecondsAndReturn();
         }

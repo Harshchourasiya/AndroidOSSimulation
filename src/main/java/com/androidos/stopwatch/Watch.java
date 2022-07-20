@@ -4,18 +4,18 @@ import com.androidos.helper.TimeFormater;
 
 public class Watch {
     private int minutes, seconds, miliSecondsPre10;
-    private boolean isStop; 
+    private boolean isStart; 
     private TimeFormater formater;
     public Watch() {
         minutes = 0;
         seconds = 0;
         miliSecondsPre10 = 0;
-        isStop = false;
+        isStart = false;
         formater = new TimeFormater();
     }
 
     public String increaseTimeBy10MiliSecondsAndReturn() {
-        if (isStop) return getStopWatchFormated();
+        if (!isStart) return getStopWatchFormated();
 
         miliSecondsPre10++;
         correctTime();
@@ -46,10 +46,15 @@ public class Watch {
         miliSecondsPre10 = 0;
         seconds = 0;
         minutes = 0;
+        isStart = false;
+    }
+
+    public boolean getIsStarted() {
+        return isStart;
     }
 
     public void stopAndStartSwitch() {
-        isStop = !isStop;
+        isStart = !isStart;
     }
 
 }
