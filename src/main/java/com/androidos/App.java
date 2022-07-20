@@ -2,12 +2,12 @@ package com.androidos;
 
 import javax.swing.*;
 import java.awt.*;
-import com.androidos.clock.Clock;
+import com.androidos.stopwatch.Stopwatch;
 public class App 
 {
     public static void main( String[] args ) {
         JFrame f= new JFrame("Panel Example"); 
-        Clock clock = new Clock();   
+        Stopwatch clock = new Stopwatch();   
         Thread t1 = new Thread(clock);
         t1.start();     
         JPanel panel = clock.getPanel();

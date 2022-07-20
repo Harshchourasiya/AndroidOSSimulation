@@ -13,24 +13,10 @@ public class Clock implements Runnable{
         time = new Time();
         panel = new JPanel(new BorderLayout());
         clockTextLabel = new JLabel();
-        setPanelData();
+        setPanel();
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            setTime();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {}
-        }
-    }
-
-    private void setTime() {
-        clockTextLabel.setText(time.getFormatedTime());
-    }
-
-    private void setPanelData() {
+    private void setPanel() {
         setClockLabelStyle();
         setPanelStyle();
         panel.add(clockTextLabel, BorderLayout.CENTER);
@@ -48,6 +34,22 @@ public class Clock implements Runnable{
         clockTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
         clockTextLabel.setFont(new Font("SERIF", 0, 50));
     }
+
+
+    @Override
+    public void run() {
+        while (true) {
+            setTime();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+        }
+    }
+
+    private void setTime() {
+        clockTextLabel.setText(time.getFormatedTime());
+    }
+
 
     public JPanel getPanel() {
         return panel;
