@@ -14,7 +14,7 @@ public class TimerTest {
     @Test
     public void testDecreaseTimeBy10MilisecondsAndReturn() {
         timer.setTime(1);
-        timer.startTimer();
+        timer.startOrStopTimer();
         for (int i = 0; i < 100 * 50; i++) {
             timer.decreaseTimeBy10MilisecondsAndReturn();
         }
@@ -30,14 +30,14 @@ public class TimerTest {
     @Test
     public void testSetTimeAfterStart() {
         timer.setTime(20);
-        timer.startTimer();
+        timer.startOrStopTimer();
         timer.setTime(11);
         assertEquals("20:00:00", timer.getTimerInFormate());
     }
 
     @Test
     public void testStartTimer() {
-        timer.startTimer();
+        timer.startOrStopTimer();
        assertEquals("00:00:00", timer.decreaseTimeBy10MilisecondsAndReturn());
     }
 }
