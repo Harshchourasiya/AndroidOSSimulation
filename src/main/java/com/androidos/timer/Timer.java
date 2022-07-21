@@ -41,6 +41,8 @@ public class Timer {
         if (miliSecondsPer10 == -1) decreaseSecond();
 
         if (seconds == -1) decreaseMinute();
+
+        if (minutes == -1) reset();
     }
 
     private void decreaseSecond() {
@@ -53,9 +55,13 @@ public class Timer {
         seconds = 59;
     }
 
-    public void startTimer() {
+    public void startOrStopTimer() {
         if (minutes == 0 && seconds == 0 && miliSecondsPer10 == 0) return ;
-        isStart = true;
+        isStart = !isStart;
+    }
+
+    public boolean getIsTimerStarted() {
+        return isStart;
     }
 
     public String getTimerInFormate() {

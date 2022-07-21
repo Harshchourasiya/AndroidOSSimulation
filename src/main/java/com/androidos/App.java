@@ -2,12 +2,12 @@ package com.androidos;
 
 import javax.swing.*;
 import java.awt.*;
-import com.androidos.stopwatch.Stopwatch;
+import com.androidos.timer.TimerGUI;
 public class App 
 {
     public static void main( String[] args ) {
         JFrame f= new JFrame("Panel Example"); 
-        Stopwatch clock = new Stopwatch();   
+        TimerGUI clock = new TimerGUI(f);   
         Thread t1 = new Thread(clock);
         t1.start();     
         JPanel panel = clock.getPanel();
