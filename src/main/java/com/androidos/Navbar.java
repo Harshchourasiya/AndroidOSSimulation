@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 
 import static com.androidos.data.Data.*;
+import static com.androidos.helper.Style.*;
 public class Navbar {
     private JFrame frame;
     private JPanel homePanel, panel;
@@ -18,11 +19,28 @@ public class Navbar {
         this.frame = frame;
         this.homePanel = homePanel;
         panel = new JPanel(new FlowLayout());
-        recent = new JButton(RECENT_STR);
-        home = new JButton(HOME_STR);
-        back = new JButton(BACK_STR);
-
+        setNavigationButton();
         setPanel();
+    }
+
+    private void setNavigationButton() {
+        recent = getNewButtonWithIcon(RECENT_IMAGE_URL);
+
+        home = getNewButtonWithIcon(HOME_IMAGE_URL);
+
+        back = getNewButtonWithIcon(BACK_IMAGE_URL);
+
+        setButtonStyle();
+    }
+
+    private JButton getNewButtonWithIcon(String name) {
+        return new JButton(getImageIconFromResource(getClass(),name));
+    }
+
+    private void setButtonStyle() {
+        setIconButtonStyle(recent);
+        setIconButtonStyle(home);
+        setIconButtonStyle(back);
     }
 
     private void setPanel() {

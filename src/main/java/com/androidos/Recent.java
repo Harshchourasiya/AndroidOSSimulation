@@ -65,7 +65,7 @@ public class Recent {
             recentPanel.add(app.getPanel());
         }
         
-        recentPanel.setBackground(Color.GRAY);
+        recentPanel.setBackground(Color.BLACK);
         panel.setComponentOrientation(
                 ComponentOrientation.LEFT_TO_RIGHT);
         return recentPanel;

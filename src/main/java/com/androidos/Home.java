@@ -43,16 +43,16 @@ public class Home implements Runnable, ActionListener{
         storeApps();
         setAppsButtonProperties();
         setHomeClockStyle();
-        setPanelStyle();
+        setPanelStyle(panel);
 
         panel.add(BorderLayout.CENTER, homeClock);
         panel.add(BorderLayout.PAGE_END, getAppsInOnePanel());
     }
 
     private void storeApps() {
-        apps.add(new AppButton(STOPWATCH_APP_NAME, ""));
-        apps.add(new AppButton(TIMER_APP_NAME, ""));
-        apps.add(new AppButton(CLOCK_APP_NAME, ""));
+        apps.add(new AppButton(getClass(), STOPWATCH_ICON_URL, STOPWATCH_APP_NAME));
+        apps.add(new AppButton(getClass(), TIMER_ICON_URL, TIMER_APP_NAME));
+        apps.add(new AppButton(getClass(), CLOCK_ICON_URL, CLOCK_APP_NAME));
     }
 
     private void setAppsButtonProperties() {
@@ -67,12 +67,6 @@ public class Home implements Runnable, ActionListener{
         homeClock.setFont(new Font("SERIF", 0, 50));
     }
 
-    private void setPanelStyle() {
-        panel.setBackground(Color.BLACK);
-        panel.setBounds(0,0,
-        SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
-    }
-
     private JPanel getAppsInOnePanel() {
         JPanel appsPanel = new JPanel(new FlowLayout());
 
@@ -81,7 +75,7 @@ public class Home implements Runnable, ActionListener{
         appsPanel.setComponentOrientation(
             ComponentOrientation.LEFT_TO_RIGHT);
 
-        appsPanel.setBackground(Color.GRAY);
+        appsPanel.setBackground(Color.BLACK);
         return appsPanel;
     }
 
@@ -99,7 +93,7 @@ public class Home implements Runnable, ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        runApp(((JButton)e.getSource()).getText());
+        runApp(((JButton)e.getSource()).getName());
     }
 
     private void runApp(String name) {
