@@ -94,7 +94,8 @@ public class TimerGUI extends App implements Runnable{
 
     @Override
     public void run() {
-        while (!Thread.currentThread().getName().equals(STOP_STR)) {
+        Thread thread = Thread.currentThread();
+        while (!thread.getName().equals(STOP_STR)) {
             if (timer.getIsTimerStarted()) runTimer();
             try {
                 Thread.sleep(10);

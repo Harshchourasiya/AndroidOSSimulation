@@ -74,7 +74,8 @@ public class Stopwatch extends App implements Runnable{
 
     @Override
     public void run() {
-        while (!Thread.currentThread().getName().equals(STOP_STR)) {
+        Thread thread = Thread.currentThread();
+        while (!thread.getName().equals(STOP_STR)) {
             if (watch.getIsStarted()) increaseTimeBy10MiliSeconds();
             try {
                 Thread.sleep(10);
