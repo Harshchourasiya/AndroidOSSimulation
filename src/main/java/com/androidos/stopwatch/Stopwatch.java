@@ -2,19 +2,23 @@ package com.androidos.stopwatch;
 
 import javax.swing.*;
 
+import com.androidos.app.App;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static com.androidos.data.Data.*;
 
-public class Stopwatch implements Runnable{
+public class Stopwatch extends App implements Runnable{
     private Watch watch;
-    private JPanel panel;
+    private static JPanel panel;
     private JLabel watchTextLabel;
     private JButton startOrStopButton, resetButton;
 
     public Stopwatch() {
+        super(panel);
+
         watch = new Watch();
         panel = new JPanel(new BorderLayout());
         watchTextLabel = new JLabel();
@@ -80,11 +84,12 @@ public class Stopwatch implements Runnable{
 
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.currentThread().getName().equals(STOP_STR)) {
             if (watch.getIsStarted()) increaseTimeBy10MiliSeconds();
             try {
                 Thread.sleep(10);
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException e) {
+            }
         }
     }
 
@@ -92,6 +97,7 @@ public class Stopwatch implements Runnable{
         watchTextLabel.setText(watch.increaseTimeBy10MiliSecondsAndReturn());
     }
 
+    @Override
     public JPanel getPanel() {
         return panel;
     }

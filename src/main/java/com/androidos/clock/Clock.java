@@ -1,15 +1,21 @@
 package com.androidos.clock;
 
 import javax.swing.*;
+
+import com.androidos.app.App;
+
 import java.awt.*;
 import static com.androidos.data.Data.*;
 
-public class Clock implements Runnable{
+public class Clock extends App implements Runnable{
+    private static JPanel panel;
+
     private Time time;
-    private JPanel panel;
     private JLabel clockTextLabel;
     
     public Clock() {
+        super(panel);
+
         time = new Time();
         panel = new JPanel(new BorderLayout());
         clockTextLabel = new JLabel();
@@ -38,7 +44,7 @@ public class Clock implements Runnable{
 
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.currentThread().getName().equals(STOP_STR)) {
             setTime();
             try {
                 Thread.sleep(1000);
@@ -49,8 +55,8 @@ public class Clock implements Runnable{
     private void setTime() {
         clockTextLabel.setText(time.getFormatedTime());
     }
-
-
+    
+    @Override
     public JPanel getPanel() {
         return panel;
     }
