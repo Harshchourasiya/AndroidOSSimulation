@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 
 import static com.androidos.data.Data.*;
+import static com.androidos.helper.Style.*;
 public class Navbar {
     private JFrame frame;
     private JPanel homePanel, panel;
@@ -18,18 +19,35 @@ public class Navbar {
         this.frame = frame;
         this.homePanel = homePanel;
         panel = new JPanel(new FlowLayout());
-        recent = new JButton(RECENT_STR);
-        home = new JButton(HOME_STR);
-        back = new JButton(BACK_STR);
-
+        setNavigationButton();
         setPanel();
+    }
+
+    private void setNavigationButton() {
+        recent = getNewButtonWithIcon(RECENT_IMAGE_URL);
+
+        home = getNewButtonWithIcon(HOME_IMAGE_URL);
+
+        back = getNewButtonWithIcon(BACK_IMAGE_URL);
+
+        setButtonStyle();
+    }
+
+    private JButton getNewButtonWithIcon(String name) {
+        return new JButton(getImageIconFromResource(getClass(),name));
+    }
+
+    private void setButtonStyle() {
+        setIconButtonStyle(recent);
+        setIconButtonStyle(home);
+        setIconButtonStyle(back);
     }
 
     private void setPanel() {
         setRecentButtonProperties();
         setHomeButtomProperties();
         setBackButtomProperties();
-        setPanelStyle();
+        setPanelStyle(panel);
 
         panel.add(recent);
         panel.add(home);
@@ -76,7 +94,6 @@ public class Navbar {
         replacePanel(homePanel);
     } 
 
-    // this is a duplicate code so remove this fast
     private void replacePanel(JPanel app) {
         frame.getContentPane().removeAll();;
         frame.getContentPane().add(app);
@@ -96,14 +113,6 @@ public class Navbar {
             }
 
         });
-    }
-
-
-    // this is also a duplicate code so remove this as fast as you can
-    private void setPanelStyle() {
-        panel.setBackground(Color.BLACK);
-        panel.setBounds(0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT,
-                SCREEN_WIDTH, BOTTOM_BAR_HEIGHT);
     }
 
     public JPanel getPanel() {

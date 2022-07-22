@@ -31,7 +31,8 @@ public class Clock extends App implements Runnable{
 
     @Override
     public void run() {
-        while (!Thread.currentThread().getName().equals(STOP_STR)) {
+        Thread thread = Thread.currentThread();
+        while (!thread.getName().equals(STOP_STR)) {
             setTime();
             try {
                 Thread.sleep(1000);
