@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import com.androidos.app.App;
 import static com.androidos.data.Data.*;
-
+import static com.androidos.helper.Style.*;
 public class TimerGUI extends App implements Runnable{
 
     private JPanel panel;
@@ -32,24 +32,18 @@ public class TimerGUI extends App implements Runnable{
     }
 
     private void setPanel() {
-        setTimerLabelTextStyle();
+        setTimerLabelText();
+        setLabelClockStyle(timerLabel);
         setTimerSetterProperties();
         setStartButtonProperties();
         setResetButtonProperties();
-        setPanelStyle();
+        setPanelStyle(panel);
 
         panel.add(BorderLayout.CENTER, timerLabel);
         panel.add(BorderLayout.PAGE_END, timeSetter);
         panel.add(BorderLayout.PAGE_START, start);
         panel.add(BorderLayout.EAST, reset);
 
-    }
-
-    private void setTimerLabelTextStyle() {
-        setTimerLabelText();
-        timerLabel.setForeground(Color.WHITE);
-        timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        timerLabel.setFont(new Font("SERIF", 0, 50));
     }
 
     private void setTimerLabelText() {
@@ -96,12 +90,6 @@ public class TimerGUI extends App implements Runnable{
             }
             
         });
-    }
-
-    private void setPanelStyle() {
-        panel.setBackground(Color.BLACK);
-        panel.setBounds(0,0,
-        SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
     }
 
     @Override

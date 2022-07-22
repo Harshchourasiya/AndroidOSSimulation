@@ -104,14 +104,14 @@ public class Home implements Runnable, ActionListener{
     private void runApp(String name) {
         Thread t = isContainsThread(name);
         if (t != null) {
-            replacePanel(appThreads.get(t));
+            replacePanel(appThreads.get(t).getPanel());
         } else {
             App app = getApp(name);
             t = new Thread((Runnable)app);
             t.setName(name);
             t.start();
             appThreads.put(t, app);
-            replacePanel(app);
+            replacePanel(app.getPanel());
         }
     }
 
@@ -140,13 +140,12 @@ public class Home implements Runnable, ActionListener{
 
     }
 
-    // TODO Code is duplicate So can be removed
-    private void replacePanel(App app) {
-        app.getPanel().setBackground(Color.BLACK);
-        app.getPanel().setBounds(0,0,
+    private void replacePanel(JPanel app) {
+        app.setBackground(Color.BLACK);
+        app.setBounds(0,0,
         SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
         frame.getContentPane().remove(panel);
-        frame.getContentPane().add(app.getPanel());
+        frame.getContentPane().add(app);
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
     }
