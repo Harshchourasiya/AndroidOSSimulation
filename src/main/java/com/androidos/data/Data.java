@@ -13,6 +13,7 @@ public class Data {
     public final static String HOME_STR = "Home";
     public final static String BACK_STR = "Back";
     public final static String CLEAR_ALL_STR = "Clear All";
+    public final static String APP_NAME_STR = "Multithreading";
 
 
     public final static String STOPWATCH_APP_NAME = "Stopwatch";
