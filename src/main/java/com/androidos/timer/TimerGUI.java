@@ -10,7 +10,7 @@ import static com.androidos.data.Data.*;
 
 public class TimerGUI extends App implements Runnable{
 
-    private static JPanel panel;
+    private JPanel panel;
     private JLabel timerLabel;
     private JSpinner timeSetter;
     private JButton start, reset;
@@ -19,11 +19,10 @@ public class TimerGUI extends App implements Runnable{
 
     private final String TIME_END_MESSAGE = "Time is Up";
 
-    public TimerGUI(JFrame frame) {
+    public TimerGUI(JFrame frame, JPanel panel) {
         super(panel);
         this.frame = frame;
-
-        panel = new JPanel(new BorderLayout());
+        this.panel = panel;
         timerLabel = new JLabel();
         timeSetter = new JSpinner();
         timer = new Timer();
@@ -126,10 +125,5 @@ public class TimerGUI extends App implements Runnable{
         setTimerLabelText();
         setStartButtonText();
         JOptionPane.showMessageDialog(frame, TIME_END_MESSAGE);
-    }
-
-    @Override
-    public JPanel getPanel() {
-        return panel;
     }
 }

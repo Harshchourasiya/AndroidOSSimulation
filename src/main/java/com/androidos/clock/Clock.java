@@ -8,16 +8,15 @@ import java.awt.*;
 import static com.androidos.data.Data.*;
 
 public class Clock extends App implements Runnable{
-    private static JPanel panel;
+    private JPanel panel;
 
     private Time time;
     private JLabel clockTextLabel;
     
-    public Clock() {
+    public Clock(JPanel panel) {
         super(panel);
-
         time = new Time();
-        panel = new JPanel(new BorderLayout());
+        this.panel = panel;
         clockTextLabel = new JLabel();
         setPanel();
     }
@@ -56,9 +55,10 @@ public class Clock extends App implements Runnable{
         clockTextLabel.setText(time.getFormatedTime());
     }
     
-    @Override
-    public JPanel getPanel() {
-        return panel;
-    }
+
+    // @Override
+    // public JPanel getPanel() {
+    //     return panel;
+    // }
     
 }

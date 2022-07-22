@@ -60,7 +60,6 @@ public class Recent {
     }
 
     private JPanel getAllRunningAppsInOnePanel() {
-        // ! ERROR is here check 
         JPanel recentPanel = new JPanel(new FlowLayout());
         for (App app : appThreads.values()) {
             recentPanel.add(app.getPanel());

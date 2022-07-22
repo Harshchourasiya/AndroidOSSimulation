@@ -17,6 +17,7 @@ import com.androidos.app.App;
 import com.androidos.app.AppButton;
 
 import static com.androidos.data.Data.*;
+import static com.androidos.helper.Style.*;
 
 public class Home implements Runnable, ActionListener{ 
 
@@ -75,7 +76,7 @@ public class Home implements Runnable, ActionListener{
     private JPanel getAppsInOnePanel() {
         JPanel appsPanel = new JPanel(new FlowLayout());
 
-        for (AppButton app : apps) appsPanel.add(app.getButton());
+        for (AppButton button : apps) appsPanel.add(button.getButton());
 
         appsPanel.setComponentOrientation(
             ComponentOrientation.LEFT_TO_RIGHT);
@@ -128,13 +129,13 @@ public class Home implements Runnable, ActionListener{
 
         switch(name) {
             case STOPWATCH_APP_NAME :
-              return new Stopwatch();
+              return new Stopwatch(getNewJPanelWithBorderLayout());
 
             case TIMER_APP_NAME:
-              return new TimerGUI(frame);
+              return new TimerGUI(frame, getNewJPanelWithBorderLayout());
 
             default :
-            return new Clock();
+            return new Clock(getNewJPanelWithBorderLayout());
         }
 
     }

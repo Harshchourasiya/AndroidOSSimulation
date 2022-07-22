@@ -12,15 +12,15 @@ import static com.androidos.data.Data.*;
 
 public class Stopwatch extends App implements Runnable{
     private Watch watch;
-    private static JPanel panel;
+    private JPanel panel;
     private JLabel watchTextLabel;
     private JButton startOrStopButton, resetButton;
 
-    public Stopwatch() {
+    public Stopwatch(JPanel panel) {
         super(panel);
-
+        
+        this.panel = panel;
         watch = new Watch();
-        panel = new JPanel(new BorderLayout());
         watchTextLabel = new JLabel();
         startOrStopButton = new JButton();
         resetButton = new JButton();
@@ -95,11 +95,6 @@ public class Stopwatch extends App implements Runnable{
 
     private void increaseTimeBy10MiliSeconds() {
         watchTextLabel.setText(watch.increaseTimeBy10MiliSecondsAndReturn());
-    }
-
-    @Override
-    public JPanel getPanel() {
-        return panel;
     }
     
 }
