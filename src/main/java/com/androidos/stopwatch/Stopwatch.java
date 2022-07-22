@@ -67,6 +67,7 @@ public class Stopwatch extends App implements Runnable{
             public void actionPerformed(ActionEvent e) {
                 watch.reset();
                 setWatchLabelText();
+                setStartOrStopButtonText();
             }
         });   
     }
