@@ -81,6 +81,7 @@ public class Home implements Runnable, ActionListener{
         appsPanel.setComponentOrientation(
             ComponentOrientation.LEFT_TO_RIGHT);
 
+        appsPanel.setBackground(Color.GRAY);
         return appsPanel;
     }
 
