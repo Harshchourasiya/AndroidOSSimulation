@@ -5,11 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.androidos.app.App;
 import static com.androidos.data.Data.*;
 
-public class TimerGUI implements Runnable{
+public class TimerGUI extends App implements Runnable{
 
-    private JPanel panel;
+    private static JPanel panel;
     private JLabel timerLabel;
     private JSpinner timeSetter;
     private JButton start, reset;
@@ -19,6 +20,7 @@ public class TimerGUI implements Runnable{
     private final String TIME_END_MESSAGE = "Time is Up";
 
     public TimerGUI(JFrame frame) {
+        super(panel);
         this.frame = frame;
 
         panel = new JPanel(new BorderLayout());
@@ -105,7 +107,7 @@ public class TimerGUI implements Runnable{
 
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.currentThread().getName().equals(STOP_STR)) {
             if (timer.getIsTimerStarted()) runTimer();
             try {
                 Thread.sleep(10);
@@ -126,6 +128,7 @@ public class TimerGUI implements Runnable{
         JOptionPane.showMessageDialog(frame, TIME_END_MESSAGE);
     }
 
+    @Override
     public JPanel getPanel() {
         return panel;
     }
