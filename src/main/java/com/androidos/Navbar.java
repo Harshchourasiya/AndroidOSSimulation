@@ -47,7 +47,7 @@ public class Navbar {
         setRecentButtonProperties();
         setHomeButtomProperties();
         setBackButtomProperties();
-        setPanelStyle();
+        setPanelStyle(panel);
 
         panel.add(recent);
         panel.add(home);
@@ -94,7 +94,6 @@ public class Navbar {
         replacePanel(homePanel);
     } 
 
-    // this is a duplicate code so remove this fast
     private void replacePanel(JPanel app) {
         frame.getContentPane().removeAll();;
         frame.getContentPane().add(app);
@@ -114,14 +113,6 @@ public class Navbar {
             }
 
         });
-    }
-
-
-    // this is also a duplicate code so remove this as fast as you can
-    private void setPanelStyle() {
-        panel.setBackground(Color.BLACK);
-        panel.setBounds(0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT,
-                SCREEN_WIDTH, BOTTOM_BAR_HEIGHT);
     }
 
     public JPanel getPanel() {
