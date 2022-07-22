@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 
 import com.androidos.app.App;
 import static com.androidos.data.Data.*;
-
+import static com.androidos.helper.Style.*;
 public class TimerGUI extends App implements Runnable{
 
-    private static JPanel panel;
+    private JPanel panel;
     private JLabel timerLabel;
     private JSpinner timeSetter;
     private JButton start, reset;
@@ -19,11 +19,10 @@ public class TimerGUI extends App implements Runnable{
 
     private final String TIME_END_MESSAGE = "Time is Up";
 
-    public TimerGUI(JFrame frame) {
+    public TimerGUI(JFrame frame, JPanel panel) {
         super(panel);
         this.frame = frame;
-
-        panel = new JPanel(new BorderLayout());
+        this.panel = panel;
         timerLabel = new JLabel();
         timeSetter = new JSpinner();
         timer = new Timer();
@@ -33,24 +32,18 @@ public class TimerGUI extends App implements Runnable{
     }
 
     private void setPanel() {
-        setTimerLabelTextStyle();
+        setTimerLabelText();
+        setLabelClockStyle(timerLabel);
         setTimerSetterProperties();
         setStartButtonProperties();
         setResetButtonProperties();
-        setPanelStyle();
+        setPanelStyle(panel);
 
         panel.add(BorderLayout.CENTER, timerLabel);
         panel.add(BorderLayout.PAGE_END, timeSetter);
         panel.add(BorderLayout.PAGE_START, start);
         panel.add(BorderLayout.EAST, reset);
 
-    }
-
-    private void setTimerLabelTextStyle() {
-        setTimerLabelText();
-        timerLabel.setForeground(Color.WHITE);
-        timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        timerLabel.setFont(new Font("SERIF", 0, 50));
     }
 
     private void setTimerLabelText() {
@@ -99,12 +92,6 @@ public class TimerGUI extends App implements Runnable{
         });
     }
 
-    private void setPanelStyle() {
-        panel.setBackground(Color.BLACK);
-        panel.setBounds(0,0,
-        SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
-    }
-
     @Override
     public void run() {
         while (!Thread.currentThread().getName().equals(STOP_STR)) {
@@ -126,10 +113,5 @@ public class TimerGUI extends App implements Runnable{
         setTimerLabelText();
         setStartButtonText();
         JOptionPane.showMessageDialog(frame, TIME_END_MESSAGE);
-    }
-
-    @Override
-    public JPanel getPanel() {
-        return panel;
     }
 }

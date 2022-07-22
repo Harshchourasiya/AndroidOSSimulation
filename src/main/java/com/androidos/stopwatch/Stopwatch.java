@@ -9,18 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static com.androidos.data.Data.*;
-
+import static com.androidos.helper.Style.*;
 public class Stopwatch extends App implements Runnable{
     private Watch watch;
-    private static JPanel panel;
+    private JPanel panel;
     private JLabel watchTextLabel;
     private JButton startOrStopButton, resetButton;
 
-    public Stopwatch() {
+    public Stopwatch(JPanel panel) {
         super(panel);
-
+        
+        this.panel = panel;
         watch = new Watch();
-        panel = new JPanel(new BorderLayout());
         watchTextLabel = new JLabel();
         startOrStopButton = new JButton();
         resetButton = new JButton();
@@ -28,8 +28,9 @@ public class Stopwatch extends App implements Runnable{
     }
 
     private void setPanel() {
-        setWatchLabelStyle();
-        setPanelStyle();
+        setWatchLabelText();
+        setLabelClockStyle(watchTextLabel);
+        setPanelStyle(panel);
         setStartOrStopButtonProperties();
         setResetButtonProperties();
 
@@ -38,18 +39,6 @@ public class Stopwatch extends App implements Runnable{
         panel.add(resetButton, BorderLayout.AFTER_LAST_LINE);
     }
 
-    private void setPanelStyle() {
-        panel.setBackground(Color.BLACK);
-        panel.setBounds(0,0,
-        SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
-    }
-
-    private void setWatchLabelStyle() {
-        setWatchLabelText();
-        watchTextLabel.setForeground(Color.WHITE);
-        watchTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        watchTextLabel.setFont(new Font("SERIF", 0, 50));
-    }
 
     private void setWatchLabelText() {
         watchTextLabel.setText(watch.getStopWatchFormated());
@@ -78,6 +67,7 @@ public class Stopwatch extends App implements Runnable{
             public void actionPerformed(ActionEvent e) {
                 watch.reset();
                 setWatchLabelText();
+                setStartOrStopButtonText();
             }
         });   
     }
@@ -95,11 +85,6 @@ public class Stopwatch extends App implements Runnable{
 
     private void increaseTimeBy10MiliSeconds() {
         watchTextLabel.setText(watch.increaseTimeBy10MiliSecondsAndReturn());
-    }
-
-    @Override
-    public JPanel getPanel() {
-        return panel;
     }
     
 }

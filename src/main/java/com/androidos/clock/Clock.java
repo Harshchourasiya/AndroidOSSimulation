@@ -6,39 +6,26 @@ import com.androidos.app.App;
 
 import java.awt.*;
 import static com.androidos.data.Data.*;
-
+import static com.androidos.helper.Style.*;
 public class Clock extends App implements Runnable{
-    private static JPanel panel;
+    private JPanel panel;
 
     private Time time;
     private JLabel clockTextLabel;
     
-    public Clock() {
+    public Clock(JPanel panel) {
         super(panel);
-
         time = new Time();
-        panel = new JPanel(new BorderLayout());
+        this.panel = panel;
         clockTextLabel = new JLabel();
         setPanel();
     }
 
     private void setPanel() {
-        setClockLabelStyle();
-        setPanelStyle();
-        panel.add(clockTextLabel, BorderLayout.CENTER);
-    }
-
-    private void setPanelStyle() {
-        panel.setBackground(Color.BLACK);
-        panel.setBounds(0,0,
-        SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
-    }
-
-    private void setClockLabelStyle() {
         setTime();
-        clockTextLabel.setForeground(Color.WHITE);
-        clockTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        clockTextLabel.setFont(new Font("SERIF", 0, 50));
+        setLabelClockStyle(clockTextLabel);
+        setPanelStyle(panel);
+        panel.add(clockTextLabel, BorderLayout.CENTER);
     }
 
 
@@ -54,11 +41,6 @@ public class Clock extends App implements Runnable{
 
     private void setTime() {
         clockTextLabel.setText(time.getFormatedTime());
-    }
-    
-    @Override
-    public JPanel getPanel() {
-        return panel;
     }
     
 }

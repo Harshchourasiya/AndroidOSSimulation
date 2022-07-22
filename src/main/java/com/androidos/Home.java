@@ -17,6 +17,7 @@ import com.androidos.app.App;
 import com.androidos.app.AppButton;
 
 import static com.androidos.data.Data.*;
+import static com.androidos.helper.Style.*;
 
 public class Home implements Runnable, ActionListener{ 
 
@@ -75,11 +76,12 @@ public class Home implements Runnable, ActionListener{
     private JPanel getAppsInOnePanel() {
         JPanel appsPanel = new JPanel(new FlowLayout());
 
-        for (AppButton app : apps) appsPanel.add(app.getButton());
+        for (AppButton button : apps) appsPanel.add(button.getButton());
 
         appsPanel.setComponentOrientation(
             ComponentOrientation.LEFT_TO_RIGHT);
 
+        appsPanel.setBackground(Color.GRAY);
         return appsPanel;
     }
 
@@ -103,14 +105,14 @@ public class Home implements Runnable, ActionListener{
     private void runApp(String name) {
         Thread t = isContainsThread(name);
         if (t != null) {
-            replacePanel(appThreads.get(t));
+            replacePanel(appThreads.get(t).getPanel());
         } else {
             App app = getApp(name);
             t = new Thread((Runnable)app);
             t.setName(name);
             t.start();
             appThreads.put(t, app);
-            replacePanel(app);
+            replacePanel(app.getPanel());
         }
     }
 
@@ -128,24 +130,23 @@ public class Home implements Runnable, ActionListener{
 
         switch(name) {
             case STOPWATCH_APP_NAME :
-              return new Stopwatch();
+              return new Stopwatch(getNewJPanelWithBorderLayout());
 
             case TIMER_APP_NAME:
-              return new TimerGUI(frame);
+              return new TimerGUI(frame, getNewJPanelWithBorderLayout());
 
             default :
-            return new Clock();
+            return new Clock(getNewJPanelWithBorderLayout());
         }
 
     }
 
-    // TODO Code is duplicate So can be removed
-    private void replacePanel(App app) {
-        app.getPanel().setBackground(Color.BLACK);
-        app.getPanel().setBounds(0,0,
+    private void replacePanel(JPanel app) {
+        app.setBackground(Color.BLACK);
+        app.setBounds(0,0,
         SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
         frame.getContentPane().remove(panel);
-        frame.getContentPane().add(app.getPanel());
+        frame.getContentPane().add(app);
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
     }
