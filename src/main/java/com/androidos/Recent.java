@@ -10,7 +10,6 @@ import com.androidos.app.App;
 
 import static com.androidos.Home.appThreads;
 import static com.androidos.data.Data.*;
-import static com.androidos.helper.Style.*;
 public class Recent {
     private JPanel panel;
     private JButton cleanAll;
@@ -24,7 +23,7 @@ public class Recent {
 
     private void setPanel() {
         setClearAllButtonProperties();
-        setPanelStyle(panel);
+        setPanelStyle();
         panel.add(getAllRunningAppsInOnePanel());
         panel.add(BorderLayout.PAGE_END, cleanAll);
 
@@ -52,6 +51,12 @@ public class Recent {
         for (Thread t : appThreads.keySet()) {
             t.setName(STOP_STR);
         }
+    }
+
+    private void setPanelStyle() {
+        panel.setBackground(Color.GRAY);
+        panel.setBounds(0,0,
+        SCREEN_WIDTH,SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT); 
     }
 
     private JPanel getAllRunningAppsInOnePanel() {
