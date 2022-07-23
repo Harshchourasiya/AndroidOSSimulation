@@ -1,6 +1,5 @@
 package com.androidos.data;
 
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 
